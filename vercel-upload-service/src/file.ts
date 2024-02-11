@@ -20,7 +20,8 @@ export function getAllFilePaths(folderPath: string) {
     const response = []
     for (const fileOrFolder of allFilesAndFolders) {
         const fileOrFolderPath = path.join(folderPath, fileOrFolder as string)
-        if (!fs.statSync(fileOrFolderPath).isDirectory()) {
+        const isDirectory = fs.statSync(fileOrFolderPath).isDirectory()
+        if (!isDirectory) {
             response.push(fileOrFolderPath)
         }
     }
